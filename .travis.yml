@@ -1,0 +1,36 @@
+---
+sudo: false
+language: c
+matrix:
+  include:
+    - env: TEST=pre-commit
+      services:
+        - docker
+      script: ./tests/pre-commit.sh
+
+    - env: TEST=terraform
+      services:
+        - docker
+      script: cd tf; ../tests/terraform.sh
+
+    - env: TEST=shellcheck
+      services:
+        - docker
+      script: ./tests/shellcheck.sh
+
+    - env: TEST=yamllint
+      services:
+        - docker
+      script: ./tests/yamllint.sh
+
+    - env: TEST=markdownlint
+      services:
+        - docker
+      script: ./tests/mdl.sh
+branches:
+  only:
+    - master
+    # also matched against tag pushes
+    - /^\d+\.\d+\.\d+$/
+notifications:
+  email: false
