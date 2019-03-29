@@ -13,7 +13,7 @@
 | Name | Description |
 |------|-------------|
 | SAL\_OBJECTS\_S3\_BUCKET |  |
-| SAL\_TOPIC\_REGISTRY |  |
+| SAL\_TOPIC\_REGISTRY\_BUCKET |  |
 | TSSW\_USER |  |
 | TSSW\_USER\_AWS\_ACCESS\_KEY\_ID |  |
 | TSSW\_USER\_AWS\_SECRET\_ACCESS\_KEY |  |

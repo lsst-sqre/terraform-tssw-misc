@@ -16,6 +16,6 @@ output "SAL_OBJECTS_S3_BUCKET" {
   value = "${aws_s3_bucket.sal_obj.id}"
 }
 
-output "SAL_TOPIC_REGISTRY" {
+output "SAL_TOPIC_REGISTRY_BUCKET" {
   value = "${aws_s3_bucket.sal_topic.id}"
 }
