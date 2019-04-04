@@ -49,7 +49,9 @@
       ],
       "Resource": [
         "${sal_obj_arn}/*",
-        "${sal_topic_arn}/*"
+        "${sal_topic_arn}/*",
+        "${sal_obj_arn}",
+        "${sal_topic_arn}"
       ]
     }
   ]
