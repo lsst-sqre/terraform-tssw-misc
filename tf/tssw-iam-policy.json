@@ -34,7 +34,6 @@
         "s3:ListBucketMultipartUploads",
         "s3:ListBucketVersions",
         "s3:ListMultipartUploadParts",
-        "s3:ListObjects",
         "s3:PutBucketAcl",
         "s3:PutBucketCORS",
         "s3:PutBucketPublicAccessBlock",
