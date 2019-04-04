@@ -27,6 +27,11 @@ matrix:
       services:
         - docker
       script: ./tests/mdl.sh
+
+    - env: TEST=jsonlint
+      services:
+        - docker
+      script: ./tests/jsonlint.sh
 branches:
   only:
     - master
