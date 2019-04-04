@@ -58,40 +58,19 @@ resource "aws_s3_bucket" "sal_topic_logs" {
   force_destroy = false
 }
 
+data "template_file" "tssw_iam_policy" {
+  template = "${file("${path.module}/tssw-iam-policy.json")}"
+
+  vars {
+    sal_obj_arn   = "${aws_s3_bucket.sal_obj.arn}"
+    sal_topic_arn = "${aws_s3_bucket.sal_topic.arn}"
+  }
+}
+
 module "tssw_user" {
   source = "git::https://github.com/lsst-sqre/terraform-aws-iam-user"
 
   name = "tssw"
 
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "1",
-      "Effect": "Allow",
-      "Action": [
-        "s3:GetObject",
-        "s3:PutObject"
-      ],
-      "Resource": [
-        "${aws_s3_bucket.sal_obj.arn}/*",
-        "${aws_s3_bucket.sal_topic.arn}/*"
-      ]
-    },
-    {
-      "Sid": "2",
-      "Effect": "Allow",
-      "Action": [
-        "s3:ListObjects",
-        "s3:ListBucket"
-      ],
-      "Resource": [
-        "${aws_s3_bucket.sal_obj.arn}/*",
-        "${aws_s3_bucket.sal_topic.arn}/*"
-      ]
-    }
-  ]
-}
-EOF
+  policy = "${data.template_file.tssw_iam_policy.rendered}"
 }
